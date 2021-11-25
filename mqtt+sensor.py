@@ -84,14 +84,15 @@ def subscribe(client: mqtt_client):
 		GPIO.setmode(GPIO.BOARD)
 		GPIO.setup(11, GPIO.OUT)
 		pwm = GPIO.PWM(11, 50)
+		#starting the pulse-width modulation
 		pwm.start(0)
 
 		## MOTOR BEHAVIOR (get the water then put it on the recipient)
 		for i in range(2):
-		  pwm.ChangeDutyCycle(7.39)  # neutral position
-		  sleep(0.85)
+		  pwm.ChangeDutyCycle(7.39)  # right +90 deg position
+		  sleep(0.85) #sleep time to get the angle
 		  pwm.ChangeDutyCycle(6.75)  # left -90 deg position
-		  sleep(0.8)
+		  sleep(0.8) #sleep time to get the angle
 
 		## STOP AND CLEANUP
 		pwm.stop()
